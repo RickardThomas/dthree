@@ -7,18 +7,17 @@ export default function Dthree() {
 
 const svgRef = useRef() 
 
-var data1 = {a: 9, b: 20, c:30, d:8, e:12}
-var data2 = {a: 6, b: 16, c:20, d:14, e:19, f:12}
+const data1 = {a: 9, b: 20, c:30, d:8, e:12}
+const data2 = {a: 6, b: 16, c:20, d:14, e:19, f:12}
 
 const [data, setdata] = useState({a: 9, b: 20, c:30, d:8, e:12})
 
 const svg = d3.select(svgRef.current)
 
-let width = 250
-let height = 250
-let margin = 50
-
-var radius = Math.min(width, height) / 2 - margin
+    let width = 250
+    let height = 250
+    let margin = 50
+    let radius = Math.min(width, height) / 2 - margin
 
 svg
     .append("svg")
@@ -26,18 +25,21 @@ svg
     .attr("height", height)
     .append("g")
     .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
-
+    
 var color = d3.scaleOrdinal()
   .domain(["a", "b", "c", "d", "e", "f"])
   .range(d3.schemeDark2);
 
-    const pie = d3.pie()
-    .value(function(d) {return d.value; })
-    .sort(function(a, b) { console.log(a) ; return d3.ascending(a.key, b.key);} ) // This make sure that group order remains the same in the pie chart
-  var data_ready = pie(d3.entries(data))
+const pie = d3.pie()
+.value(function(d) {
+    return d.value})
+.sort(function(a, b) { console.log(a) 
+        return d3.ascending(a.key, b.key)}) // This make sure that group order remains the same in the pie chart
 
-  var u = svg.selectAll("path")
-    .data(data_ready)
+const data_ready = pie(d3.entries(data))
+
+var u = svg.selectAll("path")
+     .data(data_ready)
 
   u
     .enter()
@@ -53,7 +55,11 @@ var color = d3.scaleOrdinal()
     .attr("stroke", "white")
     .style("stroke-width", "2px")
     .style("opacity", 1)
+    // try to center pie chart
+    .attr('transform', 'translate(100, 100)') 
+    // select('g').style('transform', 'translate(50%, 50%)') 
 
+    console.log(u.style)
 
   u
     .exit()
@@ -61,14 +67,24 @@ var color = d3.scaleOrdinal()
 
     return (
 
-<div>
+<div style={{ padding:'100px'}}>
 
 <div>
 <button onClick={()=>setdata(data1)}>Data 1</button>
 <button onClick={()=>setdata(data2)}>Data 2</button>
 </div>
 
-<svg style={{background: 'teal', textAlign: 'center'}} ref={svgRef}></svg>
+<svg 
+
+style={{
+    background: 'teal', 
+    width: '700px',
+    height: '700px'
+
+    }} ref={svgRef}></svg>
+
+    <svg/>
+    
 
 </div>
 
