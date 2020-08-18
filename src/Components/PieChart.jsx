@@ -1,6 +1,8 @@
 import React, {useRef, useState} from 'react'
 import * as d3 from 'd3'
 
+// 18 August 
+// press button to see data
 // https://www.d3-graph-gallery.com/graph/pie_changeData.html
 
 export default function Dthree() {
@@ -8,7 +10,7 @@ export default function Dthree() {
 const svgRef = useRef() 
 
 const data1 = {a: 9, b: 20, c:30, d:8, e:12}
-const data2 = {a: 6, b: 16, c:20, d:14, e:19, f:12}
+const data2 = {a: 6, b: 16, c:20, d:14, e:19, f:32}
 
 const [data, setdata] = useState({a: 9, b: 20, c:30, d:8, e:12})
 
@@ -20,6 +22,7 @@ const svg = d3.select(svgRef.current)
     let radius = Math.min(width, height) / 2 - margin
 
 svg
+
     .append("svg")
     .attr("width", width)
     .attr("height", height)
@@ -67,23 +70,16 @@ var u = svg.selectAll("path")
 
     return (
 
-<div style={{ padding:'100px'}}>
+<div className="pie-me">
 
 <div>
 <button onClick={()=>setdata(data1)}>Data 1</button>
 <button onClick={()=>setdata(data2)}>Data 2</button>
 </div>
 
-<svg 
+<svg ref={svgRef}></svg>
 
-style={{
-    background: 'teal', 
-    width: '700px',
-    height: '700px'
 
-    }} ref={svgRef}></svg>
-
-    <svg/>
     
 
 </div>
