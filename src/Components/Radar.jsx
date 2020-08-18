@@ -15,10 +15,9 @@ export default function Brain() {
       onHover={(point) => {
         if (point) {
           console.log('hovered over a data point');
-        } else {
-          console.log('not over anything');
-        }
+        } 
       }}
+      
       data={{
         variables: [
           {key: 'resilience', label: 'Resilience'},
