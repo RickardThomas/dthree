@@ -1,10 +1,8 @@
 import React from 'react';
 import './App.css';
-
-// import Dat from './Components/CPieChart' 
-
-
-import { Barplot } from "./Components/Barplot";
+import Dat from './Components/APieChart' 
+// 
+// import { Barplot } from "./Components/Barplot";
 
 function App() {
 
@@ -12,16 +10,11 @@ function App() {
 
     <div className="App">
 {/* 
-      <Dat/> */}
+      <Barplot/> */}
   
-  <Barplot
-        data={[
-          { group: "A", value: 4 },
-          { group: "B", value: 16 },
-          { group: "C", value: 8 }
-        ]}
-      />
-
+  
+    <Dat/>
+    
     </div>
 
   );

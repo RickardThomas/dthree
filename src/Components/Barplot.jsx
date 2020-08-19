@@ -54,5 +54,5 @@ export const Barplot = props => {
     createBarChart(props.data);
   }, [props.data]);
 
-  return <div className="barplotVizDiv" />;
+  return  <Barplot />
 };
