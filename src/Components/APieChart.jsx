@@ -22,16 +22,16 @@ const svg = d3.select(svgRef.current)
     let radius = Math.min(width, height) / 2 - margin
 
 svg
-
     .append("svg")
     .attr("width", width)
     .attr("height", height)
     .append("g")
     .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
     
-var color = d3.scaleOrdinal()
-  .domain(["a", "b", "c", "d", "e", "f"])
-  .range(d3.schemeDark2);
+const color = d3.scaleOrdinal()
+    .domain(["a", "b", "c", "d", "e", "f"])
+    .range(d3.schemeDark2);
 
 const pie = d3.pie()
 .value(function(d) {
@@ -44,44 +44,44 @@ const data_ready = pie(d3.entries(data))
 var u = svg.selectAll("path")
      .data(data_ready)
 
-  u
-    .enter()
-    .append('path')
-    .merge(u)
-    .transition()
-    .duration(1000)
-    .attr('d', d3.arc()
-      .innerRadius(0)
-      .outerRadius(radius)
-    )
-    .attr('fill', function(d){ return(color(d.data.key)) })
-    .attr("stroke", "white")
-    .style("stroke-width", "2px")
-    .style("opacity", 1)
-    // try to center pie chart
-    .attr('transform', 'translate(100, 100)') 
-    // select('g').style('transform', 'translate(50%, 50%)') 
+ u
+  .enter()
+  .append('path')
+  .merge(u)
+  .transition()
+  .duration(1000)
+  .attr('d', d3.arc()
+    .innerRadius(0)
+    .outerRadius(radius)
+  )
+  .attr('fill', function(d){ return(color(d.data.key)) })
+  .attr("stroke", "white")
+  .style("stroke-width", "2px")
+  .style("opacity", 1)
 
-    console.log(u.style)
+  // try to center pie chart
+  .attr('transform', 'translate(100, 100)') 
+  // select('g').style('transform', 'translate(50%, 50%)') 
+
+  console.log(u.style)
 
   u
-    .exit()
-    .remove()
+   .exit()
+   .remove()
 
     return (
 
-<div className="pie-me">
+      
+    <div className="pie-me">
 
-<div>
-<button onClick={()=>setdata(data1)}>Data 1</button>
-<button onClick={()=>setdata(data2)}>Data 2</button>
-</div>
+    <div>
+    <button onClick={()=>setdata(data1)}>Data 1</button>
+    <button onClick={()=>setdata(data2)}>Data 2</button>
+    </div>
 
-<svg ref={svgRef}></svg>
+    <svg ref={svgRef}></svg>
 
 
-    
+    </div>
+  )}
 
-</div>
-
-    )}
